@@ -7,28 +7,49 @@
 
 import UIKit
 
+struct GenresResult: Decodable {
+    let genres: [Genre]
+}
+
+struct Genre: Decodable {
+    let id: Int
+    let name: String
+    let parentID: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case parentID = "parent_id"
+    }
+}
+
 class ViewController: UITableViewController {
+    var models: [Genre] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         getGenres()
+        
     }
     
     func getGenres() {
         var request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
         let session = URLSession(configuration: .default)
-        
-        session.dataTask(with: request) { data, _, error in
+
+        let task = session.dataTask(with: request) { data, _, error in
             guard let data = data else { return }
+
             do {
                 let result = try JSONDecoder().decode(GenresResult.self, from: data)
-                print(result)
+                print("Decoding \(result)")
+
+                self.models = result.genres
             } catch {
                 print(error)
             }
-        }.resume()
+        }
+        task.resume()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,6 +57,13 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return models.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")!
+        let genre = models[indexPath.row]
+        cell.textLabel?.text = genre.name
+        return cell
     }
 }
