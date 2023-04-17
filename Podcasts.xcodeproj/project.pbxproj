@@ -16,6 +16,7 @@
 		9D32BB6029E982AC00F41469 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32BB5F29E982AC00F41469 /* R.generated.swift */; };
 		9D32BB6229E9BB6800F41469 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32BB6129E9BB6800F41469 /* Genre.swift */; };
 		9D6698CA29ED6AD100E268AF /* GenresResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6698C929ED6AD100E268AF /* GenresResult.swift */; };
+		9D6698D029EDB4A500E268AF /* PodcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6698CF29EDB4A500E268AF /* PodcastsTableViewController.swift */; };
 		EC078E3AB87431FABCB61D3C /* Pods_Podcasts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBABB62F6C281B04887F049 /* Pods_Podcasts.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		9D32BB5F29E982AC00F41469 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		9D32BB6129E9BB6800F41469 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9D6698C929ED6AD100E268AF /* GenresResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresResult.swift; sourceTree = "<group>"; };
+		9D6698CF29EDB4A500E268AF /* PodcastsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsTableViewController.swift; sourceTree = "<group>"; };
 		CCBABB62F6C281B04887F049 /* Pods_Podcasts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcasts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 				9D32BB4929E980B400F41469 /* AppDelegate.swift */,
 				9D32BB4B29E980B400F41469 /* SceneDelegate.swift */,
 				9D32BB4D29E980B400F41469 /* GenreViewController.swift */,
+				9D6698CF29EDB4A500E268AF /* PodcastsTableViewController.swift */,
 				9D32BB6129E9BB6800F41469 /* Genre.swift */,
 				9D6698C929ED6AD100E268AF /* GenresResult.swift */,
 				9D32BB5F29E982AC00F41469 /* R.generated.swift */,
@@ -259,6 +262,7 @@
 				9D32BB4E29E980B400F41469 /* GenreViewController.swift in Sources */,
 				9D32BB6229E9BB6800F41469 /* Genre.swift in Sources */,
 				9D32BB4A29E980B400F41469 /* AppDelegate.swift in Sources */,
+				9D6698D029EDB4A500E268AF /* PodcastsTableViewController.swift in Sources */,
 				9D32BB4C29E980B400F41469 /* SceneDelegate.swift in Sources */,
 				9D6698CA29ED6AD100E268AF /* GenresResult.swift in Sources */,
 				9D32BB6029E982AC00F41469 /* R.generated.swift in Sources */,

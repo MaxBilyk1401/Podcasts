@@ -6,16 +6,19 @@
 //
 
 import UIKit
+
 final class ViewController: UITableViewController {
     var models: [Genre] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(getGenres), for: .valueChanged)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         getGenres()
-        
     }
     
+    @objc
     func getGenres() {
         let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
         let session = URLSession(configuration: .default)
@@ -24,17 +27,21 @@ final class ViewController: UITableViewController {
             guard let data = data else { return }
             do {
                 let result = try JSONDecoder().decode(GenresResult.self, from: data)
-                DispatchQueue.main.async {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     self.models = result.genres
                     self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
                     print(result.genres)
-                }
+                })
             } catch {
                 DispatchQueue.main.async {
                     print(error)
+                    self.tableView.refreshControl?.endRefreshing()
                 }
             }
         }
+        self.tableView.refreshControl?.beginRefreshing()
         task.resume()
     }
     
@@ -52,4 +59,13 @@ final class ViewController: UITableViewController {
         cell.textLabel?.text = genre.name
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)")
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "PodcastViewController") as? PodcastsTableViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+    }
+    
 }
