@@ -34,7 +34,7 @@ class ViewController: UITableViewController {
     }
     
     func getGenres() {
-        var request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
+        let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
         let session = URLSession(configuration: .default)
 
         let task = session.dataTask(with: request) { data, _, error in
@@ -42,9 +42,10 @@ class ViewController: UITableViewController {
 
             do {
                 let result = try JSONDecoder().decode(GenresResult.self, from: data)
-                print("Decoding \(result)")
+//                print("Decoding \(result)")
 
                 self.models = result.genres
+                print(result.genres)
             } catch {
                 print(error)
             }
@@ -57,13 +58,13 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return 10
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")!
-        let genre = models[indexPath.row]
-        cell.textLabel?.text = genre.name
+//        let genre = models[indexPath.row]
+        cell.textLabel?.text = "genre.name"
         return cell
     }
 }
