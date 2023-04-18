@@ -12,6 +12,7 @@ final class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Genres"
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(getGenres), for: .valueChanged)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
@@ -32,7 +33,6 @@ final class ViewController: UITableViewController {
                     self.models = result.genres
                     self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
-                    print(result.genres)
                 })
             } catch {
                 DispatchQueue.main.async {
@@ -63,9 +63,8 @@ final class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)")
         if let vc = storyboard?.instantiateViewController(withIdentifier: "PodcastViewController") as? PodcastsTableViewController {
+            vc.genreID = models[indexPath.row].id
             self.navigationController?.pushViewController(vc, animated: true)
         }
-
     }
-    
 }

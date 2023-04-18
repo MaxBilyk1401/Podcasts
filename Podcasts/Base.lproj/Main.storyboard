@@ -32,9 +32,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="FZM-kh-FD2"/>
-                    <connections>
-                        <segue destination="zpm-RO-kS9" kind="showDetail" identifier="podcastSegue" id="Nqj-gy-P2h"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0K5-fK-h6m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -45,7 +42,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="PodcastViewController" id="zpm-RO-kS9" customClass="PodcastsTableViewController" customModule="Podcasts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Gv3-Cm-doB">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
