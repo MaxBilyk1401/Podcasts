@@ -7,13 +7,14 @@
 
 import UIKit
 
-class EpisodsTableViewController: UITableViewController {
+final class EpisodsTableViewController: UITableViewController {
     
     var episodeID: String?
-    var allEpisodes: [Episode] = []
+    private var allEpisodes: [Episode] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Episodes"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         getEpisodes()
     }
@@ -31,10 +32,8 @@ class EpisodsTableViewController: UITableViewController {
             guard let data = data else { return }
             do {
                 let result = try JSONDecoder().decode(EpisodesResult.self, from: data)
-
                 DispatchQueue.main.async {
                     self.allEpisodes = result.episodes
-                    
                     self.tableView.reloadData()
                 }
             } catch {

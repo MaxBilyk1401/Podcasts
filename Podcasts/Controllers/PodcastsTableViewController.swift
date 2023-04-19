@@ -6,10 +6,11 @@
 //
 
 import UIKit
-class PodcastsTableViewController: UITableViewController {
+
+final class PodcastsTableViewController: UITableViewController {
 
     var genreID: Int?
-    var allPodcasts: [BestPodcasts] = []
+    private var allPodcasts: [BestPodcasts] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,8 @@ class PodcastsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "EpisodsTableViewController") as? EpisodsTableViewController {
+        if let vc = storyboard?.instantiateViewController(
+            withIdentifier: "EpisodsTableViewController") as? EpisodsTableViewController {
             vc.episodeID = allPodcasts[indexPath.row].id
             self.navigationController?.pushViewController(vc, animated: true)
         }

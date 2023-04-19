@@ -8,7 +8,8 @@
 import UIKit
 
 final class ViewController: UITableViewController {
-    var models: [Genre] = []
+    
+    private var models: [Genre] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,8 @@ final class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "PodcastViewController") as? PodcastsTableViewController {
+        if let vc = storyboard?.instantiateViewController(
+            withIdentifier: "PodcastViewController") as? PodcastsTableViewController {
             vc.genreID = models[indexPath.row].id
             self.navigationController?.pushViewController(vc, animated: true)
         }
