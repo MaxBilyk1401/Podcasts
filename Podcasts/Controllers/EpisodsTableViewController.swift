@@ -21,10 +21,9 @@ class EpisodsTableViewController: UITableViewController {
     func getEpisodes() {
         guard let episodeID = episodeID else { return }
         
-        let url = URL(string: "https://listen-api-test.listennotes.com/api/v2/episodes/")
-        let path = "?id=\(episodeID)"
-        let newUrl = url.flatMap { URL(string: $0.absoluteString + path) }
-//        let newUrl = url?.appendingPathComponent("?id=\(episodeID)", isDirectory: false)
+        let url = URL(string: "https://listen-api-test.listennotes.com/api/v2/podcasts")
+        let path = "/episodes/?id=\(episodeID)"
+        let newUrl = url?.appendingPathComponent((path), isDirectory: false)
         print(newUrl!)
         let request = URLRequest(url: newUrl!)
         let session = URLSession(configuration: .default)
@@ -52,12 +51,12 @@ class EpisodsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return allEpisodes.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
-        cell.textLabel?.text = "allEpisodes[indexPath.row].title"
+        cell.textLabel?.text = allEpisodes[indexPath.row].title
         return cell
     }
 }

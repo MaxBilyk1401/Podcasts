@@ -8,6 +8,10 @@
 import Foundation
 
 struct Episode: Decodable {
+    let title: String?
+    let description: String?
+    let image: String?
+    let id: String?
     let episodes: Episodes?
     
     struct Episodes: Decodable {
