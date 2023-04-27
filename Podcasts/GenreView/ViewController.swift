@@ -1,14 +1,8 @@
-//
-//  ViewController.swift
-//  Podcasts
-//
 //  Created by Maxos on 4/14/23.
-//
 
 import UIKit
 
 final class ViewController: UITableViewController {
-    
     private var models: [Genre] = []
     
     override func viewDidLoad() {
@@ -21,7 +15,7 @@ final class ViewController: UITableViewController {
     }
     
     @objc
-    func getGenres() {
+    private func getGenres() {
         let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
         let session = URLSession(configuration: .default)
 
@@ -63,7 +57,8 @@ final class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(
-            withIdentifier: "PodcastViewController") as? PodcastsTableViewController {
+            withIdentifier: String(describing: PodcastsTableViewController.self)
+        ) as? PodcastsTableViewController {
             vc.genreID = models[indexPath.row].id
             self.navigationController?.pushViewController(vc, animated: true)
         }

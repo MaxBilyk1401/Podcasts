@@ -8,20 +8,16 @@
 import UIKit
 
 final class PodcastsTableViewController: UITableViewController {
-
+    private var allPodcasts: [Podcast] = []
     var genreID: Int?
-    private var allPodcasts: [BestPodcasts] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Podcasts"
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(getPodcasts), for: .valueChanged)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         getPodcasts()
     }
     
-    @objc
     func getPodcasts() {
         guard let genreID = genreID else { return }
         
@@ -37,19 +33,16 @@ final class PodcastsTableViewController: UITableViewController {
             do {
                 let result = try JSONDecoder().decode(BestPodcastsResult.self, from: data)
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                DispatchQueue.main.async {
                     self.allPodcasts = result.podcasts
                     self.tableView.reloadData()
-                    self.tableView.refreshControl?.endRefreshing()
-                })
+                }
             } catch {
                 DispatchQueue.main.async {
                     print(error)
-                    self.tableView.refreshControl?.endRefreshing()
                 }
             }
         }
-        self.tableView.refreshControl?.beginRefreshing()
         task.resume()
     }
     
@@ -70,7 +63,8 @@ final class PodcastsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(
-            withIdentifier: "EpisodsTableViewController") as? EpisodsTableViewController {
+            withIdentifier: String(describing: EpisodsTableViewController.self)
+        ) as? EpisodsTableViewController {
             vc.episodeID = allPodcasts[indexPath.row].id
             self.navigationController?.pushViewController(vc, animated: true)
         }

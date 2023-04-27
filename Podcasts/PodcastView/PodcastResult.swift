@@ -8,5 +8,5 @@
 import Foundation
 
 struct BestPodcastsResult: Decodable {
-    let podcasts: [BestPodcasts]
+    let podcasts: [Podcast]
 }

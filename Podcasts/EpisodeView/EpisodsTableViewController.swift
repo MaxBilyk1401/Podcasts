@@ -8,9 +8,8 @@
 import UIKit
 
 final class EpisodsTableViewController: UITableViewController {
-    
-    var episodeID: String?
     private var allEpisodes: [Episode] = []
+    var episodeID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +22,7 @@ final class EpisodsTableViewController: UITableViewController {
         guard let episodeID = episodeID else { return }
         
         let url = URL(string: "https://listen-api-test.listennotes.com/api/v2/podcasts")
-        let path = "/episodes/?id=\(episodeID)"
-        let newUrl = url?.appendingPathComponent((path), isDirectory: false)
-        print(newUrl!)
+        let newUrl = url?.appendingPathComponent((episodeID), isDirectory: false)
         let request = URLRequest(url: newUrl!)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { data, _, error in
