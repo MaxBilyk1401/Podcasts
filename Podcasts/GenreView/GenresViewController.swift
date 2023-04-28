@@ -1,26 +1,18 @@
-//
-//  ViewController.swift
-//  Podcasts
-//
 //  Created by Maxos on 4/14/23.
-//
 
 import UIKit
 
-final class ViewController: UITableViewController {
-    var models: [Genre] = []
+class GenresViewController: UITableViewController {
+    private var models: [Genre] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Genres"
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(getGenres), for: .valueChanged)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         getGenres()
     }
     
-    @objc
-    func getGenres() {
+    private func getGenres() {
         let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
         let session = URLSession(configuration: .default)
 
@@ -29,19 +21,16 @@ final class ViewController: UITableViewController {
             do {
                 let result = try JSONDecoder().decode(GenresResult.self, from: data)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                DispatchQueue.main.async {
                     self.models = result.genres
                     self.tableView.reloadData()
-                    self.tableView.refreshControl?.endRefreshing()
-                })
+                }
             } catch {
                 DispatchQueue.main.async {
                     print(error)
-                    self.tableView.refreshControl?.endRefreshing()
                 }
             }
         }
-        self.tableView.refreshControl?.beginRefreshing()
         task.resume()
     }
     
@@ -61,10 +50,8 @@ final class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)")
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "PodcastViewController") as? PodcastsTableViewController {
-            vc.genreID = models[indexPath.row].id
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = PodcastsTableViewController()
+        vc.genreID = models[indexPath.row].id
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

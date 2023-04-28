@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct PodcastsResult: Decodable {
-    let podcasts: [Podcasts]
+struct BestPodcastsResult: Decodable {
+    let podcasts: [Podcast]
 }
