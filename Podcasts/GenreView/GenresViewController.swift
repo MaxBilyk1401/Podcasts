@@ -2,19 +2,16 @@
 
 import UIKit
 
-final class ViewController: UITableViewController {
+class GenresViewController: UITableViewController {
     private var models: [Genre] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Genres"
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(getGenres), for: .valueChanged)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         getGenres()
     }
     
-    @objc
     private func getGenres() {
         let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
         let session = URLSession(configuration: .default)
@@ -24,19 +21,16 @@ final class ViewController: UITableViewController {
             do {
                 let result = try JSONDecoder().decode(GenresResult.self, from: data)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                DispatchQueue.main.async {
                     self.models = result.genres
                     self.tableView.reloadData()
-                    self.tableView.refreshControl?.endRefreshing()
-                })
+                }
             } catch {
                 DispatchQueue.main.async {
                     print(error)
-                    self.tableView.refreshControl?.endRefreshing()
                 }
             }
         }
-        self.tableView.refreshControl?.beginRefreshing()
         task.resume()
     }
     

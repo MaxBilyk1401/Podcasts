@@ -18,7 +18,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let genres = ViewController()
+        let genres = GenresViewController()
         let navController = UINavigationController(rootViewController: genres)
         
         window.rootViewController = navController
