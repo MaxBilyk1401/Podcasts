@@ -7,7 +7,7 @@ class GenresViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Genres"
+        title = "Genre"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         getGenres()
     }
