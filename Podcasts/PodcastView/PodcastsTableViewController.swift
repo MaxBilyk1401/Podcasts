@@ -62,11 +62,8 @@ final class PodcastsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(
-            withIdentifier: String(describing: EpisodsTableViewController.self)
-        ) as? EpisodsTableViewController {
-            vc.episodeID = allPodcasts[indexPath.row].id
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = EpisodsTableViewController()
+        vc.episodeID = allPodcasts[indexPath.row].id
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

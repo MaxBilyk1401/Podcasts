@@ -50,11 +50,8 @@ class GenresViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(
-            withIdentifier: String(describing: PodcastsTableViewController.self)
-        ) as? PodcastsTableViewController {
-            vc.genreID = models[indexPath.row].id
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = PodcastsTableViewController()
+        vc.genreID = models[indexPath.row].id
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
