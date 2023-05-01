@@ -2,36 +2,35 @@
 
 import UIKit
 
+/*
+ View -> Presenter
+ onRefresh
+ select(Genre)
+ 
+ Presenter -> View
+ display([genre])
+ display(isLoading: Bool)
+ display error(optional)
+ */
+
 class GenresViewController: UITableViewController {
-    private var models: [Genre] = []
+    var models: [Genre] = []
+    var presenter = GenrePresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.view = self
+        presenter.onRefresh()
         title = "Genre"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
-        getGenres()
-    }
-    
-    private func getGenres() {
-        let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
-        let session = URLSession(configuration: .default)
-
-        let task = session.dataTask(with: request) { data, _, error in
-            guard let data = data else { return }
-            do {
-                let result = try JSONDecoder().decode(GenresResult.self, from: data)
-                
-                DispatchQueue.main.async {
-                    self.models = result.genres
-                    self.tableView.reloadData()
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    print(error)
-                }
-            }
-        }
-        task.resume()
+        
+        let router = MyRouter()
+        router.navigationController = navigationController
+        
+        let presenter = GenrePresenter()
+        presenter.router = router
+        
+        self.presenter = presenter
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,8 +49,21 @@ class GenresViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let genre = models[indexPath.row]
+        presenter.onSelect(genre)
+        let selectedGenre = models[indexPath.row].id
+        presenter.cellTapped(with: selectedGenre)
+    }
+}
+
+extension GenresViewController: GenresView {
+    func goToNextPage() {
         let vc = PodcastsTableViewController()
-        vc.genreID = models[indexPath.row].id
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func display(_ genre: [Genre]) {
+        models = genre
+        tableView.reloadData()
     }
 }
