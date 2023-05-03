@@ -3,11 +3,10 @@
 import UIKit
 
 final class PodcastUIComposer {
-    static func build(with id: Int?) -> UIViewController {
+    static func build(with genreID: String) -> UIViewController {
         let vc = PodcastsTableViewController()
-        let presenter = PodcastPresenter()
+        let presenter = PodcastPresenter(view: vc, genreID: genreID)
         vc.presenter = presenter
-        presenter.view = vc as? any PodcastView
         
         return vc
     }

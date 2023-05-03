@@ -12,5 +12,5 @@ final class GenresUIComposer {
         return vc
     }
     private init() {
-}
+    }
 }

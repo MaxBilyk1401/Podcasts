@@ -2,18 +2,7 @@
 
 import UIKit
 
-/*
- View -> Presenter
- onRefresh
- select(Genre)
- 
- Presenter -> View
- display([genre])
- display(isLoading: Bool)
- display error(optional)
- */
-
-class GenresViewController: UITableViewController {
+final class GenresViewController: UITableViewController {
     var models: [Genre] = []
     var presenter: GenrePresenter!
     
@@ -40,7 +29,7 @@ class GenresViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedGenreID = models[indexPath.row].id
+        let selectedGenreID = String(models[indexPath.row].id)
         let nextVC = PodcastUIComposer.build(with: selectedGenreID)
         
         self.navigationController?.pushViewController(nextVC, animated: true)

@@ -4,13 +4,13 @@ import UIKit
 
 final class EpisodsTableViewController: UITableViewController {
     private var allEpisodes: [Episode] = []
-    var episodeID: String?
     var presenter: EpisodePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Episodes"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
+        presenter.onRefresh()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,5 +25,12 @@ final class EpisodsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
         cell.textLabel?.text = allEpisodes[indexPath.row].title
         return cell
+    }
+}
+
+extension EpisodsTableViewController: EpisodeView {
+    func display(_ episode: [Episode]) {
+        allEpisodes = episode
+        tableView.reloadData()
     }
 }
