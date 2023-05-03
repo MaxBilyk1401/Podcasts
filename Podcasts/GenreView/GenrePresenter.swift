@@ -4,12 +4,10 @@ import Foundation
 
 protocol GenresView: AnyObject {
     func display(_ genre: [Genre])
-    func goToNextPage()
 }
 
 class GenrePresenter {
-    weak var view: GenresViewController?
-    var router: MyRouter?
+    weak var view: GenresView?
     
     func onRefresh() {
        let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
@@ -31,12 +29,4 @@ class GenrePresenter {
        }
        task.resume()
    }
-    
-    func onSelect(_ genre: Genre) {
-        view?.goToNextPage()
-    }
-    
-    func cellTapped(with id: Int) {
-        router?.showNextScreen(with: id)
-    }
 }

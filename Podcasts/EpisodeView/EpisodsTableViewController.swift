@@ -5,36 +5,12 @@ import UIKit
 final class EpisodsTableViewController: UITableViewController {
     private var allEpisodes: [Episode] = []
     var episodeID: String?
+    var presenter: EpisodePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Episodes"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
-        getEpisodes()
-    }
-    
-    func getEpisodes() {
-        guard let episodeID = episodeID else { return }
-        
-        let url = URL(string: "https://listen-api-test.listennotes.com/api/v2/podcasts")
-        let newUrl = url?.appendingPathComponent((episodeID), isDirectory: false)
-        let request = URLRequest(url: newUrl!)
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { data, _, error in
-            guard let data = data else { return }
-            do {
-                let result = try JSONDecoder().decode(EpisodesResult.self, from: data)
-                DispatchQueue.main.async {
-                    self.allEpisodes = result.episodes
-                    self.tableView.reloadData()
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    print(error)
-                }
-            }
-        }
-        task.resume()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

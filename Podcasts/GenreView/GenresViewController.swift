@@ -15,22 +15,13 @@ import UIKit
 
 class GenresViewController: UITableViewController {
     var models: [Genre] = []
-    var presenter = GenrePresenter()
+    var presenter: GenrePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
         presenter.onRefresh()
         title = "Genre"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
-        
-        let router = MyRouter()
-        router.navigationController = navigationController
-        
-        let presenter = GenrePresenter()
-        presenter.router = router
-        
-        self.presenter = presenter
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,19 +40,14 @@ class GenresViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let genre = models[indexPath.row]
-        presenter.onSelect(genre)
-        let selectedGenre = models[indexPath.row].id
-        presenter.cellTapped(with: selectedGenre)
+        let selectedGenreID = models[indexPath.row].id
+        let nextVC = PodcastUIComposer.build(with: selectedGenreID)
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
 extension GenresViewController: GenresView {
-    func goToNextPage() {
-        let vc = PodcastsTableViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func display(_ genre: [Genre]) {
         models = genre
         tableView.reloadData()
