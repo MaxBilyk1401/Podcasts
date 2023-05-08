@@ -29,6 +29,7 @@ final class EpisodsTableViewController: UITableViewController {
 }
 
 extension EpisodsTableViewController: EpisodeView {
+    
     func display(_ episode: [Episode]) {
         allEpisodes = episode
         tableView.reloadData()

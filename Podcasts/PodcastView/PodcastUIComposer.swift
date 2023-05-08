@@ -5,9 +5,8 @@ import UIKit
 final class PodcastUIComposer {
     static func build(with genreID: String) -> UIViewController {
         let vc = PodcastsTableViewController()
-        let presenter = PodcastPresenter(view: vc, genreID: genreID)
+        let presenter = PodcastPresenter(genreID: genreID, view: vc)
         vc.presenter = presenter
-        
         return vc
     }
     private init() {}

@@ -37,6 +37,7 @@ final class PodcastsTableViewController: UITableViewController {
 }
 
 extension PodcastsTableViewController: PodcastView {
+    
     func display(_ podcast: [Podcast]) {
         allPodcasts = podcast
         tableView.reloadData()

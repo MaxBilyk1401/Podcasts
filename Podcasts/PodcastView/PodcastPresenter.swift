@@ -10,7 +10,7 @@ final class PodcastPresenter {
     weak var view: PodcastView?
     private var genreID: String
     
-    init(view: PodcastView?, genreID: String) {
+    init(genreID: String, view: PodcastView?) {
         self.view = view
         self.genreID = genreID
     }

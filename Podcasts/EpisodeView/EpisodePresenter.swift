@@ -10,9 +10,9 @@ final class EpisodePresenter {
     weak var view: EpisodeView?
     private var episodeID: String
     
-    init(view: EpisodeView?, episodeID: String) {
-        self.view = view
+    init(episodeID: String, view: EpisodeView?) {
         self.episodeID = episodeID
+        self.view = view
     }
     
     func onRefresh() {
