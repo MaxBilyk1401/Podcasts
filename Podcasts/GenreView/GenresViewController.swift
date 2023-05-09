@@ -2,36 +2,15 @@
 
 import UIKit
 
-class GenresViewController: UITableViewController {
-    private var models: [Genre] = []
+final class GenresViewController: UITableViewController {
+    var models: [Genre] = []
+    var presenter: GenrePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Genres"
+        presenter.onRefresh()
+        title = "Genre"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
-        getGenres()
-    }
-    
-    private func getGenres() {
-        let request = URLRequest(url: URL(string: "https://listen-api-test.listennotes.com/api/v2/genres")!)
-        let session = URLSession(configuration: .default)
-
-        let task = session.dataTask(with: request) { data, _, error in
-            guard let data = data else { return }
-            do {
-                let result = try JSONDecoder().decode(GenresResult.self, from: data)
-                
-                DispatchQueue.main.async {
-                    self.models = result.genres
-                    self.tableView.reloadData()
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    print(error)
-                }
-            }
-        }
-        task.resume()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,8 +29,17 @@ class GenresViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = PodcastsTableViewController()
-        vc.genreID = models[indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
+        let selectedGenreID = String(models[indexPath.row].id)
+        let nextVC = PodcastUIComposer.build(with: selectedGenreID)
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
+
+extension GenresViewController: GenresView {
+    
+    func display(_ genre: [Genre]) {
+        models = genre
+        tableView.reloadData()
     }
 }

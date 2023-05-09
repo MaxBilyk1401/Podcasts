@@ -14,6 +14,12 @@
 		9D32BB5629E980B500F41469 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D32BB5429E980B500F41469 /* LaunchScreen.storyboard */; };
 		9D32BB6029E982AC00F41469 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32BB5F29E982AC00F41469 /* R.generated.swift */; };
 		9D32BB6229E9BB6800F41469 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32BB6129E9BB6800F41469 /* Genre.swift */; };
+		9D6017C129FDB5D6004712F3 /* GenrePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6017C029FDB5D6004712F3 /* GenrePresenter.swift */; };
+		9D6017C72A01573D004712F3 /* GenresUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6017C62A01573D004712F3 /* GenresUIComposer.swift */; };
+		9D6017C92A01AF1F004712F3 /* PodcastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6017C82A01AF1F004712F3 /* PodcastPresenter.swift */; };
+		9D6017CB2A01B814004712F3 /* PodcastUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6017CA2A01B814004712F3 /* PodcastUIComposer.swift */; };
+		9D6017CD2A01B9F5004712F3 /* EpisodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6017CC2A01B9F5004712F3 /* EpisodePresenter.swift */; };
+		9D6017CF2A01BB0B004712F3 /* EpisodeUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6017CE2A01BB0B004712F3 /* EpisodeUIComposer.swift */; };
 		9D6698CA29ED6AD100E268AF /* GenresResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6698C929ED6AD100E268AF /* GenresResult.swift */; };
 		9D6698D029EDB4A500E268AF /* PodcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6698CF29EDB4A500E268AF /* PodcastsTableViewController.swift */; };
 		9D6698D829EED6B600E268AF /* BestPodcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6698D729EED6B600E268AF /* BestPodcasts.swift */; };
@@ -36,6 +42,12 @@
 		9D32BB5729E980B500F41469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D32BB5F29E982AC00F41469 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		9D32BB6129E9BB6800F41469 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		9D6017C029FDB5D6004712F3 /* GenrePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePresenter.swift; sourceTree = "<group>"; };
+		9D6017C62A01573D004712F3 /* GenresUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUIComposer.swift; sourceTree = "<group>"; };
+		9D6017C82A01AF1F004712F3 /* PodcastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPresenter.swift; sourceTree = "<group>"; };
+		9D6017CA2A01B814004712F3 /* PodcastUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastUIComposer.swift; sourceTree = "<group>"; };
+		9D6017CC2A01B9F5004712F3 /* EpisodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePresenter.swift; sourceTree = "<group>"; };
+		9D6017CE2A01BB0B004712F3 /* EpisodeUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeUIComposer.swift; sourceTree = "<group>"; };
 		9D6698C929ED6AD100E268AF /* GenresResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresResult.swift; sourceTree = "<group>"; };
 		9D6698CF29EDB4A500E268AF /* PodcastsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsTableViewController.swift; sourceTree = "<group>"; };
 		9D6698D729EED6B600E268AF /* BestPodcasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcasts.swift; sourceTree = "<group>"; };
@@ -113,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				9D32BB4D29E980B400F41469 /* GenresViewController.swift */,
+				9D6017C029FDB5D6004712F3 /* GenrePresenter.swift */,
+				9D6017C62A01573D004712F3 /* GenresUIComposer.swift */,
 				9D32BB6129E9BB6800F41469 /* Genre.swift */,
 				9D6698C929ED6AD100E268AF /* GenresResult.swift */,
 			);
@@ -123,7 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				9D6698D929EED89300E268AF /* PodcastResult.swift */,
+				9D6017C82A01AF1F004712F3 /* PodcastPresenter.swift */,
 				9D6698D729EED6B600E268AF /* BestPodcasts.swift */,
+				9D6017CA2A01B814004712F3 /* PodcastUIComposer.swift */,
 				9D6698CF29EDB4A500E268AF /* PodcastsTableViewController.swift */,
 			);
 			path = PodcastView;
@@ -134,6 +150,8 @@
 			children = (
 				9D6698DD29EF24FD00E268AF /* EpisodsTableViewController.swift */,
 				9D6698E129EF32C400E268AF /* Episode.swift */,
+				9D6017CC2A01B9F5004712F3 /* EpisodePresenter.swift */,
+				9D6017CE2A01BB0B004712F3 /* EpisodeUIComposer.swift */,
 				9D6698E329EF32FE00E268AF /* EpisodesResult.swift */,
 			);
 			path = EpisodeView;
@@ -297,11 +315,17 @@
 				9D6698DE29EF24FD00E268AF /* EpisodsTableViewController.swift in Sources */,
 				9D32BB4E29E980B400F41469 /* GenresViewController.swift in Sources */,
 				9D32BB6229E9BB6800F41469 /* Genre.swift in Sources */,
+				9D6017CF2A01BB0B004712F3 /* EpisodeUIComposer.swift in Sources */,
+				9D6017CD2A01B9F5004712F3 /* EpisodePresenter.swift in Sources */,
+				9D6017C129FDB5D6004712F3 /* GenrePresenter.swift in Sources */,
 				9D6698D829EED6B600E268AF /* BestPodcasts.swift in Sources */,
+				9D6017C72A01573D004712F3 /* GenresUIComposer.swift in Sources */,
+				9D6017CB2A01B814004712F3 /* PodcastUIComposer.swift in Sources */,
 				9D6698DA29EED89300E268AF /* PodcastResult.swift in Sources */,
 				9D32BB4A29E980B400F41469 /* AppDelegate.swift in Sources */,
 				9D6698D029EDB4A500E268AF /* PodcastsTableViewController.swift in Sources */,
 				9D32BB4C29E980B400F41469 /* SceneDelegate.swift in Sources */,
+				9D6017C92A01AF1F004712F3 /* PodcastPresenter.swift in Sources */,
 				9D6698CA29ED6AD100E268AF /* GenresResult.swift in Sources */,
 				9D6698E229EF32C400E268AF /* Episode.swift in Sources */,
 				9D6698E429EF32FE00E268AF /* EpisodesResult.swift in Sources */,

@@ -1,9 +1,4 @@
-//
-//  SceneDelegate.swift
-//  Podcasts
-//
 //  Created by Maxos on 4/14/23.
-//
 
 import UIKit
 
@@ -18,7 +13,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let genres = GenresViewController()
+        let genres = GenresUIComposer.build()
         let navController = UINavigationController(rootViewController: genres)
         
         window.rootViewController = navController
