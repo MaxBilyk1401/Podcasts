@@ -3,6 +3,7 @@
 import UIKit
 
 final class GenresUIComposer {
+    
     static func build() -> UIViewController {
         let vc = GenresViewController()
         let presenter = GenrePresenter()
@@ -10,5 +11,6 @@ final class GenresUIComposer {
         presenter.view = vc as any GenresView
         return vc
     }
+    
     private init() {}
 }
